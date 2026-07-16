@@ -795,6 +795,21 @@ function Home() {
           </motion.button> */}
       </div>
       {/* </div> */}
+        {/* Footer */}
+      <p style={{
+        fontFamily: "'Inter', sans-serif",
+        fontSize: '0.6rem',
+        fontWeight: 1000,
+        letterSpacing: '0.15em',
+        textTransform: 'uppercase',
+        color: subtextColor,
+        opacity: 0.4,
+        marginTop: '2rem',
+        marginBottom: '1rem',
+        textAlign: 'center',
+      }}>
+        Crafted with faith · Michael E. Ben-Ikheloah
+      </p>
       {/* {!isDark && <CrossBearer />} */}
     </motion.div>
   );
