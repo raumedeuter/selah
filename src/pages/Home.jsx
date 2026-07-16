@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart,
@@ -34,6 +34,7 @@ import ThemeDrawer from "../components/ui/ThemeDrawer";
 import FloatingSymbols from "../components/ui/FloatingSymbols";
 import CrossBearer from "../components/ui/CrossBearer";
 import RisenChrist from "../components/ui/RisenChrist";
+import { requestNotificationPermission } from '../services/firebase'
 
 function shuffleArray(array) {
   const arr = [...array];
@@ -94,6 +95,12 @@ function Home() {
   const palette = isDark ? colors.dark : colors.light;
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  useEffect(() => {
+  const askPermission = async () => {
+    await requestNotificationPermission()
+  }
+  askPermission()
+}, [])
   const {
     ref: cardRef,
     sheen,
@@ -580,6 +587,26 @@ function Home() {
           </AnimatePresence>
         </div>
 
+        {/* Footer */}
+      <p
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.6rem",
+          fontWeight: 1000,
+          letterSpacing: "0.15em",
+          textTransform: "uppercase",
+          color: subtextColor,
+          opacity: 0.4,
+          marginTop: "2rem",
+          marginBottom: "1rem",
+          textAlign: "center",
+          position: "relative",
+          zIndex: 3,
+        }}
+      >
+        Crafted with faith · Michael E. Ben-Ikheloah
+      </p>
+
         {/* Actions */}
         <div className="flex items-center gap-3 mt-4 mb-4 relative">
           {!isVerseOfDay && (
@@ -795,25 +822,8 @@ function Home() {
           </motion.button> */}
       </div>
       {/* </div> */}
-      {/* Footer */}
-      <p
-        style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "0.6rem",
-          fontWeight: 1000,
-          letterSpacing: "0.15em",
-          textTransform: "uppercase",
-          color: subtextColor,
-          opacity: 0.4,
-          marginTop: "2rem",
-          marginBottom: "1rem",
-          textAlign: "center",
-          position: "relative",
-          zIndex: 3,
-        }}
-      >
-        Crafted with faith · Michael E. Ben-Ikheloah
-      </p>
+
+      
       {/* {!isDark && <CrossBearer />} */}
     </motion.div>
   );
