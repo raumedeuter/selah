@@ -1,11 +1,8 @@
-import { initializeApp, getApps, cert } from 'firebase-admin/app'
-import { getMessaging } from 'firebase-admin/messaging'
-import { getFirestore } from 'firebase-admin/firestore'
+const admin = require('firebase-admin')
 
-// Initialize Firebase Admin
-if (!getApps().length) {
-  initializeApp({
-    credential: cert({
+if (!admin.apps?.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
       privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
@@ -13,7 +10,7 @@ if (!getApps().length) {
   })
 }
 
-const db = getFirestore()
+const db = admin.firestore()
 
 // Same verse of the day logic as the frontend
 const themes = ['joy', 'peace', 'anxiety', 'grief', 'loneliness', 'strength', 'hope', 'forgiveness', 'wisdom', 'love']
@@ -122,13 +119,13 @@ function getVerseOfTheDay() {
   return all[dayOfYear % all.length]
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Verify cron secret to prevent unauthorized calls
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
 
-  const messaging = getMessaging() 
+  const messaging = admin.messaging()
 
 
   try {
