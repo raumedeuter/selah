@@ -295,7 +295,7 @@ function Home() {
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             marginTop: "0.7rem",
-            marginBottom: "2rem",
+            marginBottom: "0.75rem",
           }}
         >
           What's on your heart today?
@@ -381,7 +381,7 @@ function Home() {
         </div>
 
         {/* Mobile theme button — hidden on desktop */}
-        <div className="flex md:hidden flex-col items-center mb-8 w-full px-6 gap-1">
+        <div className="flex md:hidden flex-col items-center mb-4 w-full px-6 gap-1">
           <p
             style={{
               fontSize: "0.6rem",
@@ -456,8 +456,8 @@ function Home() {
                 // minHeight: '280px',
                 borderRadius: "24px",
                 padding: "2rem 2.5rem",
-                marginTop: "1rem",
-                marginBottom: "1rem",
+                marginTop: "0.5rem",
+                marginBottom: "0.5rem",
                 background: cardBg,
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
@@ -581,7 +581,7 @@ function Home() {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-3 mt-8 mb-10 relative">
+        <div className="flex items-center gap-3 mt-4 mb-4 relative">
           {!isVerseOfDay && (
             <motion.button
               onClick={handleNext}
@@ -795,19 +795,23 @@ function Home() {
           </motion.button> */}
       </div>
       {/* </div> */}
-        {/* Footer */}
-      <p style={{
-        fontFamily: "'Inter', sans-serif",
-        fontSize: '0.6rem',
-        fontWeight: 1000,
-        letterSpacing: '0.15em',
-        textTransform: 'uppercase',
-        color: subtextColor,
-        opacity: 0.4,
-        marginTop: '2rem',
-        marginBottom: '1rem',
-        textAlign: 'center',
-      }}>
+      {/* Footer */}
+      <p
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.6rem",
+          fontWeight: 1000,
+          letterSpacing: "0.15em",
+          textTransform: "uppercase",
+          color: subtextColor,
+          opacity: 0.4,
+          marginTop: "2rem",
+          marginBottom: "1rem",
+          textAlign: "center",
+          position: "relative",
+          zIndex: 3,
+        }}
+      >
         Crafted with faith · Michael E. Ben-Ikheloah
       </p>
       {/* {!isDark && <CrossBearer />} */}
