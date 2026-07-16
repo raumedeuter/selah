@@ -505,7 +505,7 @@ function Home() {
                 )}
                 <p
                   style={{
-                    fontSize: "0.62rem",
+                    fontSize: "0.82rem",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     color: palette.accent,
@@ -587,25 +587,7 @@ function Home() {
           </AnimatePresence>
         </div>
 
-        {/* Footer */}
-      <p
-        style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "0.6rem",
-          fontWeight: 1000,
-          letterSpacing: "0.15em",
-          textTransform: "uppercase",
-          color: subtextColor,
-          opacity: 0.4,
-          marginTop: "2rem",
-          marginBottom: "1rem",
-          textAlign: "center",
-          position: "relative",
-          zIndex: 3,
-        }}
-      >
-        Crafted with faith · Michael E. Ben-Ikheloah
-      </p>
+  
 
         {/* Actions */}
         <div className="flex items-center gap-3 mt-4 mb-4 relative">
@@ -822,7 +804,25 @@ function Home() {
           </motion.button> */}
       </div>
       {/* </div> */}
-
+            {/* Footer */}
+      <p
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.6rem",
+          fontWeight: 1000,
+          letterSpacing: "0.15em",
+          textTransform: "uppercase",
+          color: subtextColor,
+          opacity: 0.4,
+          marginTop: "2rem",
+          marginBottom: "1rem",
+          textAlign: "center",
+          position: "relative",
+          zIndex: 3,
+        }}
+      >
+        Crafted with faith · Michael E. Ben-Ikheloah
+      </p>
       
       {/* {!isDark && <CrossBearer />} */}
     </motion.div>
