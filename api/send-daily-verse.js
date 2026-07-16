@@ -1,9 +1,11 @@
-import admin from 'firebase-admin'
+import { initializeApp, getApps, cert } from 'firebase-admin/app'
+import { getMessaging } from 'firebase-admin/messaging'
+import { getFirestore } from 'firebase-admin/firestore'
 
 // Initialize Firebase Admin
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert({
+if (!getApps().length) {
+  initializeApp({
+    credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
       privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
@@ -11,7 +13,7 @@ if (!admin.apps.length) {
   })
 }
 
-const db = admin.firestore()
+const db = getFirestore()
 
 // Same verse of the day logic as the frontend
 const themes = ['joy', 'peace', 'anxiety', 'grief', 'loneliness', 'strength', 'hope', 'forgiveness', 'wisdom', 'love']
@@ -126,6 +128,9 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
 
+  const messaging = getMessaging() 
+
+
   try {
     const verse = getVerseOfTheDay()
 
@@ -146,7 +151,7 @@ export default async function handler(req, res) {
       tokens,
     }
 
-    const response = await admin.messaging().sendEachForMulticast(message)
+    const response = await messaging.sendEachForMulticast(message)
     console.log(`Sent to ${response.successCount} devices`)
 
     // Clean up failed tokens
