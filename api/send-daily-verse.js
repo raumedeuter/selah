@@ -1,32 +1,32 @@
-// import { initializeApp, cert, getApps } from "firebase-admin/app";
-// import { getFirestore } from "firebase-admin/firestore";
-// import { getMessaging } from "firebase-admin/messaging";
+import { initializeApp, cert, getApps } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+import { getMessaging } from "firebase-admin/messaging";
 
-// if (!getApps().length) {
-//   initializeApp({
-//     credential: cert({
-//       projectId: process.env.FIREBASE_PROJECT_ID,
-//       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-//       privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-//     }),
-//   });
-// }
-
-// const db = getFirestore();
-// const messaging = getMessaging();
-
-console.log("=== SEND DAILY VERSE LOADED ===");
-
-const admin = require("firebase-admin");
-
-console.log("admin =", admin);
-console.log("admin.apps =", admin.apps);
-console.log("typeof admin.apps =", typeof admin.apps);
-
-if (!admin.apps?.length) {
-  console.log("Initializing Firebase...");
-  // ...
+if (!getApps().length) {
+  initializeApp({
+    credential: cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    }),
+  });
 }
+
+const db = getFirestore();
+const messaging = getMessaging();
+
+// console.log("=== SEND DAILY VERSE LOADED ===");
+
+// const admin = require("firebase-admin");
+
+// console.log("admin =", admin);
+// console.log("admin.apps =", admin.apps);
+// console.log("typeof admin.apps =", typeof admin.apps);
+
+// if (!admin.apps?.length) {
+//   console.log("Initializing Firebase...");
+//   // ...
+// }
 
 
 // Same verse of the day logic as the frontend
