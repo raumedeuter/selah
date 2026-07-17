@@ -7,26 +7,15 @@ if (!getApps().length) {
     credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
     }),
   });
 }
 
 const db = getFirestore();
-// const messaging = getMessaging();
+const messaging = getMessaging();
 
-// console.log("=== SEND DAILY VERSE LOADED ===");
 
-// const admin = require("firebase-admin");
-
-// console.log("admin =", admin);
-// console.log("admin.apps =", admin.apps);
-// console.log("typeof admin.apps =", typeof admin.apps);
-
-// if (!admin.apps?.length) {
-//   console.log("Initializing Firebase...");
-//   // ...
-// }
 
 
 // Same verse of the day logic as the frontend
@@ -137,16 +126,12 @@ function getVerseOfTheDay() {
 }
 
 export default async function handler(req, res) {
-  // ...
 
-  // Verify cron secret to prevent unauthorized calls
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-    return res.status(401).json({ error: 'Unauthorized' })
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
-  const messaging = messaging()
-
-
+  
   try {
     const verse = getVerseOfTheDay()
 
@@ -171,16 +156,34 @@ export default async function handler(req, res) {
     console.log(`Sent to ${response.successCount} devices`)
 
     // Clean up failed tokens
-    const failedTokens = []
-    response.responses.forEach((resp, idx) => {
-      if (!resp.success) failedTokens.push(tokens[idx])
-    })
+    // const failedTokens = []
+    // response.responses.forEach((resp, idx) => {
+    //   if (!resp.success) failedTokens.push(tokens[idx])
+    // })
 
-    if (failedTokens.length > 0) {
+    // if (failedTokens.length > 0) {
+    //   const batch = db.batch()
+    //   failedTokens.forEach(token => {
+    //     batch.delete(db.collection('fcm_tokens').doc(token))
+    //   })
+    //   await batch.commit()
+    // }
+
+    // return res.status(200).json({
+    //   success: true,
+    //   sent: response.successCount,
+    //   failed: response.failureCount,
+    // })
+
+      if (response.failureCount > 0) {
       const batch = db.batch()
-      failedTokens.forEach(token => {
-        batch.delete(db.collection('fcm_tokens').doc(token))
+
+      response.responses.forEach((resp, index) => {
+        if (!resp.success) {
+          batch.delete(tokensSnapshot.docs[index].ref)
+        }
       })
+
       await batch.commit()
     }
 
