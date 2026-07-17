@@ -13,7 +13,7 @@ if (!getApps().length) {
 }
 
 const db = getFirestore();
-const messaging = getMessaging();
+// const messaging = getMessaging();
 
 // console.log("=== SEND DAILY VERSE LOADED ===");
 
