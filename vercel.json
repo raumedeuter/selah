@@ -1,8 +1,16 @@
 {
   "crons": [
     {
-      "path": "/api/send-daily-verse",
-      "schedule": "0 6 * * *"
+      "path": "/api/morning-verse",
+      "schedule": "30 7 * * *"
+    },
+    {
+      "path": "/api/hour-of-mercy",
+      "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/night-reflection",
+      "schedule": "0 20 * * *"
     }
   ]
 }

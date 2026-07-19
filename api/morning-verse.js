@@ -146,7 +146,7 @@ export default async function handler(req, res) {
     // Send notification to all tokens
     const message = {
       notification: {
-        title: '✝ Selah — Daily Verse',
+        title: '🌅 Top of the Morning — Selah',
         body: `"${verse.text}" — ${verse.reference}`,
       },
       tokens,
