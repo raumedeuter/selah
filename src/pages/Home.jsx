@@ -96,6 +96,12 @@ function Home() {
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   useEffect(() => {
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', palette.from)
+  }
+}, [palette])
+  useEffect(() => {
   const askPermission = async () => {
     await requestNotificationPermission()
   }

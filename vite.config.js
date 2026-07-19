@@ -15,7 +15,7 @@ export default defineConfig({
         short_name: "Selah",
         description:
           "A Catholic faith companion — Scripture and Saint quotes for every mood",
-        theme_color: "#EEF2FF",
+        theme_color: '#F8F7FF',
         background_color: "#F8F7FF",
         display: "standalone",
         orientation: "portrait",
