@@ -219,26 +219,26 @@ export const themeColors = {
       cardGlow: 'rgba(251, 113, 133, 0.08)',
     }
   },
-  default: {
-    light: {
-      from: '#F8F7FF',
-      via: '#EEF2FF',
-      to: '#E0E7FF',
-      accent: '#6366F1',
-      pill: 'rgba(99, 102, 241, 0.1)',
-      pillBorder: 'rgba(99, 102, 241, 0.2)',
-      pillActive: '#4F46E5',
-      cardGlow: 'rgba(99, 102, 241, 0.08)',
-    },
-    dark: {
-      from: '#08080F',
-      via: '#0F0F1A',
-      to: '#141428',
-      accent: '#818CF8',
-      pill: 'rgba(129, 140, 248, 0.1)',
-      pillBorder: 'rgba(129, 140, 248, 0.2)',
-      pillActive: '#818CF8',
-      cardGlow: 'rgba(129, 140, 248, 0.08)',
-    }
+ default: {
+  light: {
+    from: '#F0FDFA',
+    via: '#CCFBF1',
+    to: '#99F6E4',
+    accent: '#0F766E',
+    pill: 'rgba(15, 118, 110, 0.1)',
+    pillBorder: 'rgba(15, 118, 110, 0.25)',
+    pillActive: '#0D6B64',
+    cardGlow: 'rgba(15, 118, 110, 0.08)',
+  },
+  dark: {
+    from: '#001A17',
+    via: '#002D26',
+    to: '#003D34',
+    accent: '#2DD4BF',
+    pill: 'rgba(45, 212, 191, 0.1)',
+    pillBorder: 'rgba(45, 212, 191, 0.2)',
+    pillActive: '#2DD4BF',
+    cardGlow: 'rgba(45, 212, 191, 0.08)',
   }
+}
 }

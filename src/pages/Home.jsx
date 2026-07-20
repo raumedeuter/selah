@@ -34,8 +34,9 @@ import ThemeDrawer from "../components/ui/ThemeDrawer";
 import FloatingSymbols from "../components/ui/FloatingSymbols";
 import CrossBearer from "../components/ui/CrossBearer";
 import RisenChrist from "../components/ui/RisenChrist";
-import { requestNotificationPermission } from '../services/firebase'
-
+import { requestNotificationPermission } from "../services/firebase";
+import votdBgLight from '../assets/votd-bg.jpg'
+import votdBgDark from '../assets/votd-bg-dark.jpg'
 function shuffleArray(array) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -96,17 +97,17 @@ function Home() {
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   useEffect(() => {
-  const metaThemeColor = document.querySelector('meta[name="theme-color"]')
-  if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', palette.from)
-  }
-}, [palette])
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute("content", palette.from);
+    }
+  }, [palette]);
   useEffect(() => {
-  const askPermission = async () => {
-    await requestNotificationPermission()
-  }
-  askPermission()
-}, [])
+    const askPermission = async () => {
+      await requestNotificationPermission();
+    };
+    askPermission();
+  }, []);
   const {
     ref: cardRef,
     sheen,
@@ -240,11 +241,27 @@ function Home() {
   const cardBorder = isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.7)";
 
   return (
+    // <motion.div
+    //   className="min-h-screen w-full flex flex-col items-center relative overflow-hidden"
+    //   animate={{
+    //     background: `linear-gradient(135deg, ${palette.from} 0%, ${palette.via} 50%, ${palette.to} 100%)`,
+    //   }}
+    //   transition={{ duration: 1.2, ease: "easeInOut" }}
+    // >
     <motion.div
       className="min-h-screen w-full flex flex-col items-center relative overflow-hidden"
-      animate={{
-        background: `linear-gradient(135deg, ${palette.from} 0%, ${palette.via} 50%, ${palette.to} 100%)`,
+      style={{
+        background: isVerseOfDay
+          ? `url(${isDark ? votdBgDark : votdBgLight}) center/cover no-repeat`
+          : undefined,
       }}
+      animate={
+        !isVerseOfDay
+          ? {
+              background: `linear-gradient(135deg, ${palette.from} 0%, ${palette.via} 50%, ${palette.to} 100%)`,
+            }
+          : {}
+      }
       transition={{ duration: 1.2, ease: "easeInOut" }}
     >
       {isDark ? (
@@ -593,8 +610,6 @@ function Home() {
           </AnimatePresence>
         </div>
 
-  
-
         {/* Actions */}
         <div className="flex items-center gap-3 mt-4 mb-4 relative">
           {!isVerseOfDay && (
@@ -624,7 +639,7 @@ function Home() {
           )}
 
           <motion.button
-            key={current?.reference || current?.saint}
+            key={`${current?.reference || current?.saint}-${isVerseOfDay}`}
             onClick={() => {
               if (!current) return;
               isFavourited(current)
@@ -810,7 +825,7 @@ function Home() {
           </motion.button> */}
       </div>
       {/* </div> */}
-            {/* Footer */}
+      {/* Footer */}
       <p
         style={{
           fontFamily: "'Inter', sans-serif",
@@ -818,7 +833,7 @@ function Home() {
           fontWeight: 1000,
           letterSpacing: "0.15em",
           textTransform: "uppercase",
-          color: subtextColor,
+          color: isDark ? "rgba(255, 255, 255, 0.87)" : "rgba(30, 30, 40, 0.53)",
           opacity: 0.4,
           marginTop: "2rem",
           marginBottom: "1rem",
@@ -829,7 +844,7 @@ function Home() {
       >
         Crafted with faith · Michael E. Ben-Ikheloah
       </p>
-      
+
       {/* {!isDark && <CrossBearer />} */}
     </motion.div>
   );

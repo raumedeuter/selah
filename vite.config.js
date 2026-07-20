@@ -15,8 +15,8 @@ export default defineConfig({
         short_name: "Selah",
         description:
           "A Catholic faith companion — Scripture and Saint quotes for every mood",
-        theme_color: '#F8F7FF',
-        background_color: "#F8F7FF",
+        theme_color: "#F0FDFA",
+        background_color: "#F0FDFA",
         display: "standalone",
         orientation: "portrait",
         scope: "/",
@@ -24,14 +24,14 @@ export default defineConfig({
         screenshots: [
           {
             src: "icons/screenshot-mobile.png",
-            sizes: '1170x2532',
+            sizes: "1170x2532",
             type: "image/png",
             form_factor: "narrow",
             label: "Selah — Faith Companion",
           },
           {
             src: "icons/screenshot-desktop.png",
-            sizes: '3024x1715',
+            sizes: "3024x1715",
             type: "image/png",
             form_factor: "wide",
             label: "Selah — Faith Companion",

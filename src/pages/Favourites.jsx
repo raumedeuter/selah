@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Trash2, BookOpen, Quote } from "lucide-react";
 import { useFavourites } from "../hooks/useFavourites";
 import { useTheme } from "../context/useTheme";
+import votdBgLight from '../assets/votd-bg.jpg'
+import votdBgDark from '../assets/votd-bg-dark.jpg'
 
 function Favourites() {
   const navigate = useNavigate();
@@ -17,12 +19,21 @@ function Favourites() {
   const cardBorder = isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.7)";
 
   return (
+    // <div
+    //   className="min-h-screen w-full flex flex-col items-center"
+    //   style={{
+    //     background: isDark
+    //       ? "linear-gradient(135deg, #08080F 0%, #0F0F1A 50%, #141428 100%)"
+    //       : "linear-gradient(135deg, #F8F7FF 0%, #EEF2FF 50%, #E0E7FF 100%)",
+    //     fontFamily: "'Inter', sans-serif",
+    //   }}
+    // >
     <div
       className="min-h-screen w-full flex flex-col items-center"
       style={{
         background: isDark
-          ? "linear-gradient(135deg, #08080F 0%, #0F0F1A 50%, #141428 100%)"
-          : "linear-gradient(135deg, #F8F7FF 0%, #EEF2FF 50%, #E0E7FF 100%)",
+          ? `url(${votdBgDark}) center/cover no-repeat`
+          : `url(${votdBgLight}) center/cover no-repeat`,
         fontFamily: "'Inter', sans-serif",
       }}
     >
@@ -67,8 +78,12 @@ function Favourites() {
               gap: "0.4rem",
               padding: "0.35rem 1rem",
               borderRadius: "999px",
-              background: "rgba(99,102,241,0.1)",
-              border: "1px solid rgba(99,102,241,0.2)",
+              background: isDark
+                ? "rgba(45,212,191,0.1)"
+                : "rgba(15,118,110,0.1)",
+              border: isDark
+                ? "1px solid rgba(45,212,191,0.2)"
+                : "1px solid rgba(15,118,110,0.2)",
               marginBottom: "1.5rem",
             }}
           >
@@ -77,7 +92,7 @@ function Favourites() {
                 fontSize: "0.65rem",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "#6366F1",
+                color: isDark ? "#2DD4BF" : "#0F766E",
                 fontWeight: 600,
               }}
             >
@@ -162,16 +177,22 @@ function Favourites() {
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-1.5">
                         {item.type === "verse" ? (
-                          <BookOpen size={11} style={{ color: "#6366F1" }} />
+                          <BookOpen
+                            size={11}
+                            style={{ color: isDark ? "#2DD4BF" : "#0F766E" }}
+                          />
                         ) : (
-                          <Quote size={11} style={{ color: "#6366F1" }} />
+                          <Quote
+                            size={11}
+                            style={{ color: isDark ? "#2DD4BF" : "#0F766E" }}
+                          />
                         )}
                         <p
                           style={{
                             fontSize: "0.6rem",
                             letterSpacing: "0.15em",
                             textTransform: "uppercase",
-                            color: "#6366F1",
+                            color: isDark ? "#2DD4BF" : "#0F766E",
                             fontWeight: 500,
                           }}
                         >
