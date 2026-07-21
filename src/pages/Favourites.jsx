@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Trash2, BookOpen, Quote } from "lucide-react";
 import { useFavourites } from "../hooks/useFavourites";
 import { useTheme } from "../context/useTheme";
-import votdBgLight from '../assets/votd-bg.jpg'
-import votdBgDark from '../assets/votd-bg-dark.jpg'
+import votdBgLight from "../assets/votd-bg.jpg";
+import votdBgDark from "../assets/votd-bg-dark.jpg";
 
 function Favourites() {
   const navigate = useNavigate();
@@ -40,8 +40,9 @@ function Favourites() {
       <div className="w-full max-w-2xl mx-auto flex flex-col flex-1">
         {/* Hero */}
         <div
-          className="w-full flex flex-col items-center text-center px-8 pt-12 pb-8"
+          className="w-full flex flex-col items-center text-center px-8 pb-8"
           style={{
+            paddingTop: "calc(env(safe-area-inset-top) + 3rem)",
             borderBottom: `1px solid ${cardBorder}`,
             marginBottom: "2rem",
           }}
