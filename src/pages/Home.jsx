@@ -35,8 +35,8 @@ import FloatingSymbols from "../components/ui/FloatingSymbols";
 import CrossBearer from "../components/ui/CrossBearer";
 import RisenChrist from "../components/ui/RisenChrist";
 import { requestNotificationPermission } from "../services/firebase";
-import votdBgLight from '../assets/votd-bg.jpg'
-import votdBgDark from '../assets/votd-bg-dark.jpg'
+import votdBgLight from '../assets/votd-bg.webp'
+import votdBgDark from '../assets/votd-bg-dark.webp'
 function shuffleArray(array) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {

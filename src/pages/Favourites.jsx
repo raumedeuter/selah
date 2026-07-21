@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Trash2, BookOpen, Quote } from "lucide-react";
 import { useFavourites } from "../hooks/useFavourites";
 import { useTheme } from "../context/useTheme";
-import votdBgLight from "../assets/votd-bg.jpg";
-import votdBgDark from "../assets/votd-bg-dark.jpg";
+import votdBgLight from "../assets/votd-bg.webp";
+import votdBgDark from "../assets/votd-bg-dark.webp";
 
 function Favourites() {
   const navigate = useNavigate();

@@ -59,16 +59,27 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
+        globPatterns: ["**/*.{js,css,html,ico,png,jpg,jpeg,webp,svg,woff2}"],
+
+        navigateFallback: "/index.html",
+
+        cleanupOutdatedCaches: true,
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
+
             handler: "CacheFirst",
+
             options: {
-              cacheName: "google-fonts-cache",
+              cacheName: "selah-backgrounds",
+
               expiration: {
-                maxEntries: 10,
+                maxEntries: 60,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+
+              cacheableResponse: {
+                statuses: [0, 200],
               },
             },
           },
