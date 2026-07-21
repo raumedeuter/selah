@@ -109,14 +109,14 @@ function Favourites() {
               className="flex items-center gap-1.5 transition-opacity hover:opacity-60"
               style={{
                 color: subtextColor,
-                fontSize: "0.7rem",
+                fontSize: "0.9rem",
                 letterSpacing: "0.08em",
                 background: "none",
                 border: "none",
                 cursor: "pointer",
               }}
             >
-              <ArrowLeft size={12} />
+              <ArrowLeft size={16} />
               Back to Home
             </button>
           </div>
