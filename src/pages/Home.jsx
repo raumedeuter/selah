@@ -249,8 +249,9 @@ function Home() {
     //   transition={{ duration: 1.2, ease: "easeInOut" }}
     // >
     <motion.div
-      className="min-h-screen w-full flex flex-col items-center relative overflow-hidden"
+      className="min-h-screen min-h-dvh w-full flex flex-col items-center relative"
       style={{
+        minHeight: "100dvh",
         background: isVerseOfDay
           ? `url(${isDark ? votdBgDark : votdBgLight}) center/cover no-repeat`
           : undefined,
