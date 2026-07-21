@@ -9,8 +9,8 @@
 html {
   height: 100%;
   width: 100%;
-  /* background: #F0FDFA; */
-  background: red !important;
+  background: #F0FDFA;
+  /* background: red !important; */
 }
 
 body {
@@ -19,8 +19,8 @@ body {
   width: 100%;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  /* background: #F0FDFA; */
-  background: blue !important;
+  background: #F0FDFA;
+  /* background: blue !important; */
 }
 
 #root {
