@@ -248,13 +248,19 @@ function Home() {
     //   }}
     //   transition={{ duration: 1.2, ease: "easeInOut" }}
     // >
+    // background: isVerseOfDay
+    //       ? `url(${isDark ? votdBgDark : votdBgLight}) center/cover no-repeat`
+    //       : undefined,
     <motion.div
-      className="min-h-screen min-h-dvh w-full flex flex-col items-center relative"
+      className="relative w-full flex flex-col items-center overflow-hidden"
       style={{
         minHeight: "100dvh",
-        background: isVerseOfDay
-          ? `url(${isDark ? votdBgDark : votdBgLight}) center/cover no-repeat`
+        backgroundImage: isVerseOfDay
+          ? `url(${isDark ? votdBgDark : votdBgLight})`
           : undefined,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
       animate={
         !isVerseOfDay
@@ -284,7 +290,12 @@ function Home() {
         className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none"
         style={{ opacity: 0.6 }}
       />
-      <div className="relative z-10 w-full flex flex-col items-center">
+      <div
+  className="relative z-10 w-full flex flex-col items-center"
+  style={{
+    paddingTop: "max(env(safe-area-inset-top), 12px)",
+  }}
+>
         {/* Top bar */}
         <div className="w-full flex items-center justify-between px-8 pt-8 pb-2">
           <motion.h1
