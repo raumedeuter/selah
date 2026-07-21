@@ -9,7 +9,8 @@
 html {
   height: 100%;
   width: 100%;
-  background: #F0FDFA;
+  /* background: #F0FDFA; */
+  background: red !important;
 }
 
 body {
@@ -18,10 +19,13 @@ body {
   width: 100%;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  /* background: #F0FDFA; */
+  background: blue !important;
 }
 
 #root {
   min-height: 100%;
   min-height: 100dvh;
   width: 100%;
+  /* padding-top: env(safe-area-inset-top); */
 }
