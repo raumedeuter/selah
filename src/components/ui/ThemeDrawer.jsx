@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { themes } from "../../data/themes";
+import { getPerformanceProfile } from "../utils/performance";
+
 import {
   Smile,
   Feather,
@@ -46,6 +48,9 @@ function ThemeDrawer({
     onSelectTheme(themeId);
     onClose();
   };
+  const performanceProfile = getPerformanceProfile();
+
+  const isLite = performanceProfile === "lite";
 
   return (
     <AnimatePresence>
@@ -61,7 +66,8 @@ function ThemeDrawer({
             className="fixed inset-0 z-40"
             style={{
               background: "rgba(0,0,0,0.4)",
-              backdropFilter: "blur(4px)",
+              // backdropFilter: "blur(4px)",
+              backdropFilter: isLite ? "blur(10px)" : "blur(20px)",
             }}
           />
 
@@ -70,12 +76,24 @@ function ThemeDrawer({
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 28, stiffness: 300 }}
+            // transition={{ type: "spring", damping: 28, stiffness: 300 }}
+            transition={
+              isLite
+                ? {
+                    duration: 0.28,
+                    ease: "easeOut",
+                  }
+                : {
+                    type: "spring",
+                    damping: 28,
+                    stiffness: 300,
+                  }
+            }
             className="fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl px-6 pt-5 pb-24"
             style={{
               background: cardBg,
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
+              backdropFilter: isLite ? "blur(10px)" : "blur(20px)",
+              WebkitBackdropFilter: isLite ? "blur(10px)" : "blur(20px)",
               border: `1px solid ${cardBorder}`,
               boxShadow: "0 -8px 40px rgba(0,0,0,0.15)",
             }}
