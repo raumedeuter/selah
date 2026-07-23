@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { themes } from "../../data/themes";
-import { getPerformanceProfile } from "../utils/performance";
+import { getPerformanceProfile } from "../../utils/performance";
 
 import {
   Smile,
