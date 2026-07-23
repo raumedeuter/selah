@@ -196,13 +196,13 @@ function Home() {
     exit: (dir) => ({ x: dir > 0 ? -260 : 260, opacity: 0, scale: 0.96 }),
   };
 
- const getShareText = () => {
-  if (!current) return ''
-  if (current.type === 'verse') {
-    return `"${current.text}"\n— ${current.reference} (${current.version})\n\nhttps://theselah.vercel.app\n\nShared via Selah`
-  }
-  return `"${current.quote}"\n— ${current.saint}\n\nhttps://theselah.vercel.app\n\nShared via Selah`
-}
+  const getShareText = () => {
+    if (!current) return "";
+    if (current.type === "verse") {
+      return `"${current.text}"\n— ${current.reference} (${current.version})\n\nhttps://theselah.vercel.app\n\nShared via Selah`;
+    }
+    return `"${current.quote}"\n— ${current.saint}\n\nhttps://theselah.vercel.app\n\nShared via Selah`;
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(getShareText());
@@ -320,8 +320,10 @@ function Home() {
         ) : (
           <>
             <LightRays />
-            <FloatingSymbols accentColor={palette.accent} />
-            {!isDark && <CrossBearer />}
+
+            {!drawerOpen && <FloatingSymbols accentColor={palette.accent} />}
+
+            {!isDark && !drawerOpen && <CrossBearer />}
           </>
         )}
         {/* Ambient glow blob */}
