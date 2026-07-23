@@ -96,6 +96,7 @@ function ThemeDrawer({
               WebkitBackdropFilter: isLite ? "blur(10px)" : "blur(20px)",
               border: `1px solid ${cardBorder}`,
               boxShadow: "0 -8px 40px rgba(0,0,0,0.15)",
+              overflow: "hidden",
             }}
           >
             {/* Handle */}
