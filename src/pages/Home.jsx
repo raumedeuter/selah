@@ -19,6 +19,7 @@ import {
   Share2,
   Copy,
   Check,
+  Info,
 } from "lucide-react";
 import { themes } from "../data/themes";
 import { seedVerses } from "../data/verses";
@@ -37,6 +38,8 @@ import RisenChrist from "../components/ui/RisenChrist";
 import { requestNotificationPermission } from "../services/firebase";
 import votdBgLight from "../assets/votd-bg.webp";
 import votdBgDark from "../assets/votd-bg-dark.webp";
+import InstallBanner from "../components/ui/InstallBanner";
+import InstallModal from "../components/ui/InstallModal";
 function shuffleArray(array) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -75,6 +78,7 @@ const iconMap = {
   HeartHandshake,
   Heart,
   Quote,
+  Info,
 };
 
 const themeRows = [
@@ -96,6 +100,8 @@ function Home() {
   const palette = isDark ? colors.dark : colors.light;
   const [shareOpen, setShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [installModalOpen, setInstallModalOpen] = useState(false);
+
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
@@ -354,6 +360,22 @@ function Home() {
               SELAH
             </motion.h1>
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => setInstallModalOpen(true)}
+                className="flex items-center justify-center transition-all hover:opacity-80"
+                style={{
+                  padding: "0.4rem 0.6rem",
+                  borderRadius: "999px",
+                  border: `1.5px solid ${cardBorder}`,
+                  background: cardBg,
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                  color: textColor,
+                  cursor: "pointer",
+                }}
+              >
+                <Info size={15} />
+              </button>
               <button
                 onClick={() => navigate("/favourites")}
                 style={{ color: subtextColor }}
@@ -910,6 +932,19 @@ function Home() {
 
         {/* {!isDark && <CrossBearer />} */}
       </div>
+      <InstallBanner
+        isDark={isDark}
+        palette={palette}
+        onLearnMore={() => {
+          setInstallModalOpen(true);
+        }}
+      />
+
+      <InstallModal
+        isOpen={installModalOpen}
+        onClose={() => setInstallModalOpen(false)}
+        isDark={isDark}
+      />
     </motion.div>
   );
 }

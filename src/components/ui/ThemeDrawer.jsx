@@ -40,7 +40,7 @@ function ThemeDrawer({
   const textColor = isDark ? "rgba(255,255,255,0.85)" : "rgba(30,30,40,0.85)";
   const subtextColor = isDark
     ? "rgba(255,255,255,0.45)"
-    : "rgba(30,30,40,0.45)";
+    : "rgba(30, 30, 40, 0.67)";
   const cardBg = isDark ? "rgba(20,20,35,0.95)" : "rgba(255,255,255,0.95)";
   const cardBorder = isDark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.7)";
 
@@ -184,7 +184,20 @@ function ThemeDrawer({
                 );
               })}
             </div>
-            <div style={{ height: "24px" }} />
+            <div style={{ height: "16px" }} />
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.6rem",
+                color: subtextColor,
+                textAlign: "center",
+                opacity: 0.4,
+                letterSpacing: "0.05em",
+                paddingBottom: "0.5rem",
+              }}
+            >
+              © {new Date().getFullYear()} Selah · Crafted with faith by Michael E. Ben-Ikheloah
+            </p>
           </motion.div>
         </>
       )}
