@@ -2,15 +2,15 @@
   "crons": [
     {
       "path": "/api/morning-verse",
-      "schedule": "30 7 * * *"
+      "schedule": "38 6 * * *"
     },
     {
       "path": "/api/hour-of-mercy",
-      "schedule": "0 14 * * *"
+      "schedule": "39 13 * * *"
     },
     {
       "path": "/api/night-reflection",
-      "schedule": "0 20 * * *"
+      "schedule": "26 19 * * *"
     }
   ]
 }
