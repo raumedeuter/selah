@@ -87,6 +87,7 @@ const themeRows = [
   ["forgiveness", "wisdom", "love"],
 ];
 
+
 function Home() {
   // const { saveFavourite, isFavourited, removeFavourite } = useFavourites();
   const navigate = useNavigate();
@@ -95,6 +96,7 @@ function Home() {
   const [direction, setDirection] = useState(1);
   const [current, setCurrent] = useState(() => getVerseOfTheDay());
   const [isVerseOfDay, setIsVerseOfDay] = useState(true);
+  const [history, setHistory] = useState([]);
   const { isDark, setIsDark } = useTheme();
   const colors = themeColors[selectedTheme] || themeColors.default;
   const palette = isDark ? colors.dark : colors.light;
@@ -176,6 +178,7 @@ function Home() {
     setSelectedTheme(themeId);
     setIndex(0);
     setDirection(1);
+    setHistory([]);
     const verses = (seedVerses[themeId] || []).map((v) => ({
       ...v,
       type: "verse",
@@ -191,9 +194,19 @@ function Home() {
 
   const handleNext = () => {
     setDirection(1);
+    setHistory((prev) => [...prev, { card: current, index }]);
     const nextIndex = (index + 1) % pool.length;
     setIndex(nextIndex);
     setCurrent(pool[nextIndex]);
+  };
+
+  const handlePrev = () => {
+    if (history.length === 0) return;
+    setDirection(-1);
+    const prev = history[history.length - 1];
+    setHistory((h) => h.slice(0, -1));
+    setIndex(prev.index);
+    setCurrent(prev.card);
   };
 
   const variants = {
@@ -577,6 +590,16 @@ function Home() {
                   border: `1px solid ${cardBorder}`,
                   boxShadow: `0 8px 40px ${palette.cardGlow}, 0 2px 8px rgba(0,0,0,0.06)`,
                 }}
+                drag={!isVerseOfDay ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, info) => {
+                  if (info.offset.x < -60) {
+                    handleNext();
+                  } else if (info.offset.x > 60 && history.length > 0) {
+                    handlePrev();
+                  }
+                }}
               >
                 {/* Glass sheen overlay */}
                 <div
@@ -692,6 +715,23 @@ function Home() {
               </motion.div>
             </AnimatePresence>
           </div>
+
+          {!isVerseOfDay && (
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.6rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: subtextColor,
+                opacity: 0.4,
+                marginBottom: "0.5rem",
+                textAlign: "center",
+              }}
+            >
+              ← swipe to navigate →
+            </p>
+          )}
 
           {/* Actions */}
           <div className="flex items-center gap-3 mt-4 mb-4 relative">
